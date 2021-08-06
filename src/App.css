@@ -4,7 +4,6 @@
 
 .GameBoard {
   max-width: 395px;
-  height: 395px;
   margin: 50px auto;
 }
 
@@ -12,11 +11,25 @@
   display: inline-block;
   width: 19%;
   margin: 0.5%;
-  height: 19%;
-  background: #03707b;
+  height: 75px;
+  background: #ffffff;
   color: #ffffff;
-  font-size: 40px;
+  font-size: 35px;
   font-weight: 500;
   text-align: center;
   line-height: 70px;
+  cursor: pointer;
+  vertical-align: top;
+}
+
+.Square.light{
+  background: #03707b;
+}
+
+.Square.dark{
+  background: #014950;
+}
+
+.Square.disabled{
+  cursor: default;
 }
