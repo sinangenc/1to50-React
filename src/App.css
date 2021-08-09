@@ -4,7 +4,7 @@
 
 .GameBoard {
   max-width: 395px;
-  margin: 40px auto;
+  margin: 35px auto;
 }
 
 .Square {
@@ -70,6 +70,9 @@
   width: 200px;
 }
 
+@media only screen and (max-width: 400px) {
+}
+
 .FinishMessage{
   padding-top: 50px;
 }
@@ -86,6 +89,16 @@
 .FinishMessage .Score{
   color: #dc351b;
   font-size: 50px;
+}
+
+.RestartButton {
+  cursor: pointer;
+  background: #e09e09;
+  width: 100px;
+  margin: auto auto 20px auto;
+  padding: 10px;
+  color: #ffffff;
+  border-radius: 5px;
 }
 
 .clearfix::after {

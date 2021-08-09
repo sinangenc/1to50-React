@@ -4,9 +4,9 @@ import GameBoard from "./components/GameBoard";
 import InfoField from "./components/InfoField";
 import {createNumbersArray} from "./utils/Utils";
 import FinishMessage from "./components/FinishMessage";
+import RestartButton from "./components/RestartButton";
 
-//TODO: Timer
-//TODO: Game Menu (Restart, play again, ...)
+
 //TODO: Ranking
 
 
@@ -20,7 +20,7 @@ class App extends React.Component{
 
         // Set state
         this.state = {
-            currentNumber: 26,
+            currentNumber: 1,
             numbers: numbers,
             elapsedTime: 0,
             isBoardActive: true
@@ -29,6 +29,7 @@ class App extends React.Component{
         // Binding this
         this.handleSquareOnclick = this.handleSquareOnclick.bind(this);
         this.updateElapsedTime = this.updateElapsedTime.bind(this);
+        this.restartGame = this.restartGame.bind(this);
     }
 
     startGame(){
@@ -51,6 +52,17 @@ class App extends React.Component{
         clearInterval(this.timer);
     }
 
+    restartGame(){
+        clearInterval(this.timer);
+
+        this.setState({
+            currentNumber: 1,
+            numbers: createNumbersArray(),
+            elapsedTime: 0,
+            isBoardActive: true
+        });
+    }
+
     getElapsedTime(){
         // Convert to String
         const tmpText = "" + this.state.elapsedTime;
@@ -69,7 +81,7 @@ class App extends React.Component{
         if(this.state.currentNumber === clickedNumber){
 
             // If clickedNumber == 1, start the counter
-            if(clickedNumber === 26){
+            if(clickedNumber === 1){
                 this.startGame();
             }
             else if(clickedNumber === 50){
@@ -116,6 +128,8 @@ class App extends React.Component{
                         elapsedTime={this.getElapsedTime()}
                     />
                 }
+
+                <RestartButton onClick={this.restartGame} />
             </div>
         );
     }
