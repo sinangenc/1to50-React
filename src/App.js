@@ -3,6 +3,7 @@ import React from 'react';
 import GameBoard from "./components/GameBoard";
 import InfoField from "./components/InfoField";
 import {createNumbersArray} from "./utils/Utils";
+import FinishMessage from "./components/FinishMessage";
 
 //TODO: Timer
 //TODO: Game Menu (Restart, play again, ...)
@@ -105,10 +106,14 @@ class App extends React.Component{
                     currentNumber={this.state.currentNumber}
                 />
 
-                {
+                {this.state.isBoardActive ?
                     <GameBoard
                         numbers={this.state.numbers}
                         handleSquareOnclick={this.handleSquareOnclick}
+                    />
+                    :
+                    <FinishMessage
+                        elapsedTime={this.getElapsedTime()}
                     />
                 }
             </div>

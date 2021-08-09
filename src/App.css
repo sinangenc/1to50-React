@@ -70,6 +70,23 @@
   width: 200px;
 }
 
+.FinishMessage{
+  padding-top: 50px;
+}
+
+.FinishMessage h2{
+  font-size: 35px;
+  margin: 5px 0;
+}
+
+.FinishMessage h3 {
+  margin: 0;
+}
+
+.FinishMessage .Score{
+  color: #dc351b;
+  font-size: 50px;
+}
 
 .clearfix::after {
   content: "";
