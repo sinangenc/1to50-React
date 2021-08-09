@@ -4,7 +4,7 @@
 
 .GameBoard {
   max-width: 395px;
-  margin: 50px auto;
+  margin: 40px auto;
 }
 
 .Square {
@@ -35,13 +35,20 @@
 
 .InfoField{
   width: 395px;
-  margin: 50px auto;
+  margin: 20px auto auto auto;
+}
+
+.Timer{
+  width: 240px;
+  float: left;
 }
 
 .CurrentNumber{
   width: 140px;
+  float: right;
 }
 
+.Timer span,
 .CurrentNumber span{
   display: block;
   font-size: 18px;
@@ -49,6 +56,7 @@
   color: #014950;
 }
 
+.Timer div,
 .CurrentNumber div{
   width: 100px;
   background: #014950;
@@ -56,4 +64,15 @@
   color: #ffffff;
   padding: 10px 20px;
   border-radius: 5px;
+}
+
+.Timer div {
+  width: 200px;
+}
+
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
 }

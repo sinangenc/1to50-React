@@ -25,7 +25,7 @@ export const createNumbersArray = () => {
     for(let i = 1; i <= 25; i++){
         firstPart.push({
             value: i,
-            isFound:false
+            isFound:true
         });
 
         secondPart.push({

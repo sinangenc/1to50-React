@@ -19,12 +19,45 @@ class App extends React.Component{
 
         // Set state
         this.state = {
-            currentNumber: 1,
-            numbers: numbers
+            currentNumber: 26,
+            numbers: numbers,
+            elapsedTime: 0,
+            isBoardActive: true
         }
 
         // Binding this
         this.handleSquareOnclick = this.handleSquareOnclick.bind(this);
+        this.updateElapsedTime = this.updateElapsedTime.bind(this);
+    }
+
+    startGame(){
+        this.timer = setInterval( this.updateElapsedTime, 10);
+    }
+
+    updateElapsedTime(){
+        this.setState((oldState) => {
+            return {
+                elapsedTime: oldState.elapsedTime + 10,
+            };
+        });
+    }
+
+    endGame(){
+        this.setState({
+            isBoardActive: false,
+        });
+
+        clearInterval(this.timer);
+    }
+
+    getElapsedTime(){
+        // Convert to String
+        const tmpText = "" + this.state.elapsedTime;
+
+        // Get first part of string (except from last 3 digits)
+        const second = tmpText.substr(0, tmpText.length - 3);
+
+        return ( second ? second : 0) + "." + tmpText.substr(tmpText.length - 3);
     }
 
     handleSquareOnclick(clickedNumber){
@@ -33,6 +66,16 @@ class App extends React.Component{
         // If current number clicked, set it as found
         // increase current number
         if(this.state.currentNumber === clickedNumber){
+
+            // If clickedNumber == 1, start the counter
+            if(clickedNumber === 26){
+                this.startGame();
+            }
+            else if(clickedNumber === 50){
+                // If clickedNumber == 50, stop the counter
+                this.endGame();
+            }
+
             this.setState((oldState) => {
                 // Iterate numbers and update isFound value of clicked number
                 const numbers = oldState.numbers.map((item) => {
@@ -42,8 +85,11 @@ class App extends React.Component{
                     return item;
                 });
 
+                // find net value of currentNumber
+                const nextNumber = (oldState.currentNumber < 50) ? oldState.currentNumber + 1 : oldState.currentNumber;
+
                 return {
-                    currentNumber: oldState.currentNumber + 1,
+                    currentNumber: nextNumber,
                     numbers: numbers,
                 };
             });
@@ -51,10 +97,20 @@ class App extends React.Component{
     }
 
     render() {
+
         return(
             <div className="App">
-                <InfoField currentNumber={this.state.currentNumber} />
-                <GameBoard numbers={this.state.numbers} handleSquareOnclick={this.handleSquareOnclick}  />
+                <InfoField
+                    elapsedTime={this.getElapsedTime()}
+                    currentNumber={this.state.currentNumber}
+                />
+
+                {
+                    <GameBoard
+                        numbers={this.state.numbers}
+                        handleSquareOnclick={this.handleSquareOnclick}
+                    />
+                }
             </div>
         );
     }
