@@ -34,22 +34,22 @@
 }
 
 .InfoField{
-  width: 395px;
+  max-width: 395px;
   margin: 20px auto auto auto;
 }
 
 .Timer{
-  width: 240px;
+  width: 65%;
   float: left;
 }
 
 .CurrentNumber{
-  width: 140px;
+  width: 35%;
   float: right;
 }
 
-.Timer span,
-.CurrentNumber span{
+.Timer > span,
+.CurrentNumber > span{
   display: block;
   font-size: 18px;
   margin-bottom: 5px;
@@ -68,9 +68,6 @@
 
 .Timer div {
   width: 200px;
-}
-
-@media only screen and (max-width: 400px) {
 }
 
 .FinishMessage{
@@ -105,4 +102,21 @@
   content: "";
   clear: both;
   display: table;
+}
+
+
+@media only screen and (max-width: 400px) {
+  .Timer div,
+  .CurrentNumber div {
+    width: 90%;
+    padding: 10px 0;
+  }
+
+  .CurrentNumber div {
+    width: 100%;
+  }
+
+  .hideSmallScreen{
+    display: none !important;
+  }
 }
